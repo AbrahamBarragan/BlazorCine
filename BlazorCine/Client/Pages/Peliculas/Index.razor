@@ -1,0 +1,17 @@
+﻿@page "/indice-peliculas"
+@inject HttpClient Http
+@inject NavigationManager navigationManager
+
+
+<h3>Peliculas</h3>
+
+@code {
+    PeliculaDTO[] peliculas { get; set; }
+
+    protected override async Task OnInitialiazedAsync()
+    {
+        await CargarPeliculas();
+    }
+    
+
+}
