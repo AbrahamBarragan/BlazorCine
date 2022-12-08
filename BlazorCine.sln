@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorCine.Server", "BlazorCine\Server\BlazorCine.Server.csproj", "{F0F579A2-9AAB-47A6-811E-D9E872E6D52B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorCine.Server", "BlazorCine\Server\BlazorCine.Server.csproj", "{F0F579A2-9AAB-47A6-811E-D9E872E6D52B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorCine.Client", "BlazorCine\Client\BlazorCine.Client.csproj", "{053BD092-27C7-48E9-9F52-D2F465F88AF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorCine.Client", "BlazorCine\Client\BlazorCine.Client.csproj", "{053BD092-27C7-48E9-9F52-D2F465F88AF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorCine.Shared", "BlazorCine\Shared\BlazorCine.Shared.csproj", "{B2607BA3-6654-4081-BF3C-5BA463BE3FD8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorCine.Shared", "BlazorCine\Shared\BlazorCine.Shared.csproj", "{B2607BA3-6654-4081-BF3C-5BA463BE3FD8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

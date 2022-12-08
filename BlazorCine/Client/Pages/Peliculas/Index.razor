@@ -1,17 +1,67 @@
 ﻿@page "/indice-peliculas"
-@inject HttpClient Http
+@inject HttpClient http
 @inject NavigationManager navigationManager
-
 
 <h3>Peliculas</h3>
 
-@code {
-    PeliculaDTO[] peliculas { get; set; }
+<div>
+	<a class="btn btn-success" href="crear-pelicula">Nueva Pelicula</a>
+</div>
 
-    protected override async Task OnInitialiazedAsync()
+@if (peliculas == null)
+{
+	<text>Cargarndo...</text>
+}
+else if (peliculas.Count == 0)
+{
+	<text>No se encontraron peliculas</text>
+}
+else
+{
+	<div class="table-responsive">
+		<table class="teble text-center table-hover">
+			<thead class="teble-striped">
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Name</th>
+					<th scope="col">Opciones</th>
+				</tr>
+			</thead>
+			<tbody>
+						@foreach (var pelicula in peliculas)
+						{
+						<tr>
+							<td>@pelicula.Id</td>
+							<td>@pelicula.Name</td>
+
+							<td>
+					            <button class="btn btn-primary" type="button" @onclick=@(() => navigationManager.NavigateTo($"pelicula/{pelicula.Id}"))>Editar</button>
+								<button class="btn btn-danger" type="button" @onclick="@(() => Eliminar(pelicula))">Eliminar</button>
+						    </td>
+						</tr>
+						}
+			</tbody>
+	    </table>
+	</div>
+
+}
+
+@code {
+	protected List<PeliculaDTO> peliculas;
+
+    protected override async Task OnInitializedAsync()
     {
-        await CargarPeliculas();
+        var response = await http.GetFromJsonAsync<List<PeliculaDTO>>("/peliculas");
+        if (response != null)
+        {
+            peliculas = response;
+        }
     }
-    
+
+    protected async Task Eliminar(PeliculaDTO pelicula)
+    {
+        await http.DeleteAsync($"/peliculas/{pelicula.Id}");
+        peliculas.Remove(pelicula);
+    }
 
 }

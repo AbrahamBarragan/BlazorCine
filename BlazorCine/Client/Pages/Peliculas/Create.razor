@@ -1,0 +1,55 @@
+﻿@page "/crear-pelicula"
+@inject HttpClient http
+@inject NavigationManager navigationManager
+
+
+<h3>Agregar Pelicula</h3>
+
+<EditForm Model="pelicula" OnValidSubmit="OnValidSubmit">
+	<DataAnnotationsValidator/>
+
+	<div class="col-lg-12">
+		<div class="mb-3">
+			<label class="from-label">Nombre</label>
+			<InputText id="Name" class="from-control" @bind-Value="@pelicula.Name" />
+			<ValidationMessage For="@(() => pelicula.Name)" />
+		</div>
+	</div>
+	<div class="col-1g-12 text-end mb-3 pt-4">
+		<hr />
+		<button type="button" class="btn btn-danger" onclick="history.back()">Cancelar</button>
+		<button type="submit" class="btn btn-success">Guardar</button>
+
+	</div>
+	
+</EditForm>
+
+@code {
+	protected PeliculaDTO pelicula = new PeliculaDTO();
+	[Parameter] public int id { get; set; } = 0;
+
+	protected override async Task OnInitializedAsync()
+	{
+		if (id > 0)
+		{
+			var response = await http.GetFromJsonAsync<PeliculaDTO>($"/peliculas/{id}");
+			if (response != null)
+			{
+				pelicula = response; 
+			}
+		} 
+	}
+
+	private async Task OnValidSubmit()
+	{
+		if (id > 0)
+		{
+			await http.PutAsJsonAsync<PeliculaDTO>("/peliculas", pelicula);
+		}
+		else
+		{
+			await http.PostAsJsonAsync<PeliculaDTO>("/peliculas", pelicula);
+		}
+		navigationManager.NavigateTo("peliculas");
+	}
+}

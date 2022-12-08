@@ -1,4 +1,4 @@
-﻿using BlazorCine.Server.Models;
+﻿using BlazorCine.Server.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace BlazorCine.Server
